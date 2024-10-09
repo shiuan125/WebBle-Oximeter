@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon" />
+    <title>Oximeter Readings</title>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/custom.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/73f9ae2ce5.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>Oximeter Readings</h2>
+            <p id="oximeter-result"></p>
+            <div class="card-body">
+                <div class="result-section">
+                    <div>
+                        <p class="result-value" id="spo2-value">--</p>
+                        <p class="result-label">SpO2 (%)</p>
+                    </div>
+                    <div>
+                        <p class="result-value" id="bpm-value">--</p>
+                        <p class="result-label">BPM</p>
+                        <div class="heart-icon" id="heart-icon">&#10084;</div>
+                    </div>
+                    <div>
+                        <p class="result-value" id="pi-value">--</p>
+                        <p class="result-label">PI (%)</p>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <p id="countdown-timer"></p>
+                    <button class="btn btn-primary" onclick="onConnectButtonClick()">Connect with oximeter</button>
+                    <button class="btn btn-primary" onclick="onDisconnectButtonClick()">Disconnect</button>
+                    <button class="btn btn-primary" onclick="onReconnectButtonClick()">Reconnect</button>
+                    <span id="bl-icon" hidden><i class="fa-brands fa-bluetooth"></i></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>體積圖</h2>
+            <div class="card-body">
+                <canvas id="volumeChart" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/volume.js"></script>
+    <script src="assets/js/oximeter-ble.js"></script>
+
+</body>
+
+</html>

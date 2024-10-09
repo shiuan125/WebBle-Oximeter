@@ -1,0 +1,82 @@
+body {
+  background-color: #f7f9fb;
+  font-family: 'Arial', sans-serif;
+}
+
+.card {
+  background-color: #fff;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 20px 0;
+  padding: 20px;
+  text-align: center;
+}
+
+.icon {
+  font-size: 50px;
+  color: #007bff;
+}
+
+.result-section {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.result-section>div {
+  width: 30%;
+}
+
+.result-section p {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.result-value {
+  font-size: 30px;
+  color: #AE0000;
+}
+
+.result-label {
+  font-size: 18px;
+  color: #6c757d;
+}
+
+.heart-icon {
+  font-size: 24px;
+  color: #ccc;
+  text-align: center;
+  transition: color 0.3s;
+}
+
+.heart-icon.active {
+  color: red;
+  animation: pulse 1s infinite;
+}
+.card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.5);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
