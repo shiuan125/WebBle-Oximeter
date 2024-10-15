@@ -168,6 +168,9 @@ function onConnectButtonClick() {
   if (isWebBluetoothEnabled()) {
     toggleConnection();
   }
+  else{
+    alert('It is recommended to use chrome.');
+  }
 }
 
 function onDisconnectButtonClick() {
