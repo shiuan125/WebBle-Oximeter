@@ -55,15 +55,27 @@ async function connect() {
 }
 
 async function connectAndQueryData() {
-  const server = await device.gatt.connect();
-  const service = await server.getPrimaryService(serviceUuid);
-  const characteristic = await service.getCharacteristic(notifyCharacteristicUUID);
-  characteristic.addEventListener('characteristicvaluechanged', handleData);
-  characteristic.startNotifications();
-  
+  try {
+    const server = await device.gatt.connect();
+    const service = await server.getPrimaryService(serviceUuid);
+    const characteristic = await service.getCharacteristic(notifyCharacteristicUUID);
+    characteristic.addEventListener('characteristicvaluechanged', handleData);
+    characteristic.startNotifications();
+    onConnected();
+  } catch (error) {
+    console.error('在連接或查詢資料時發生錯誤:', error);
+    if (error.name === 'NotFoundError') {
+      console.error('找不到指定的服務 UUID 或特徵值 UUID。請檢查 UUID 是否正確。');
+    } else if (error.name === 'BluetoothError') {
+      console.error('藍牙操作失敗，請確保設備已開啟且在範圍內。');
+    } else {
+      console.error('未知錯誤:', error);
+    }
+  }
+
   //#region 找出notify 
   //const characteristics = await service.getCharacteristics();
-  //onConnected();
+  //
   //for (const characteristic of characteristics) {
   //  if (characteristic.properties.notify) {
   //    characteristic.addEventListener('characteristicvaluechanged', handleData);
@@ -133,11 +145,11 @@ function startCollectingData() {
 
   countdownTimer = setInterval(() => {
     countdown--;
-    countdownElement.innerText = `倒數：${countdown}`; 
+    countdownElement.innerText = `倒數：${countdown}`;
     if (countdown <= 0) {
       clearInterval(countdownTimer);
       countdownTimer = null;
-      countdownElement.innerText = `倒數：0`; 
+      countdownElement.innerText = `倒數：0`;
       calculateAverages();
     }
   }, 1000);
@@ -150,7 +162,7 @@ function calculateAverages() {
 
   console.log(`30 秒數據收集結束。平均值： SPO2: ${avgSpo2}, PI: ${avgPi}, Pulse: ${avgBpm}`);
   isMonitor = false;
-  resultOxiElement.innerText = `30 秒數據收集結束。平均值： SPO2: ${avgSpo2}, PI: ${avgPi}, Pulse: ${avgBpm}`; 
+  resultOxiElement.innerText = `30 秒數據收集結束。平均值： SPO2: ${avgSpo2}, PI: ${avgPi}, Pulse: ${avgBpm}`;
 }
 
 function onConnected() {
@@ -168,7 +180,7 @@ function onConnectButtonClick() {
   if (isWebBluetoothEnabled()) {
     toggleConnection();
   }
-  else{
+  else {
     alert('It is recommended to use chrome.');
   }
 }

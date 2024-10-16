@@ -15,6 +15,7 @@
     <div class="container">
         <div class="card">
             <h2>Oximeter Readings</h2>
+            <div class="heart-icon" id="heart-icon">&#10084;</div>
             <p id="oximeter-result"></p>
             <div class="card-body">
                 <div class="result-section">
@@ -25,7 +26,6 @@
                     <div>
                         <p class="result-value" id="bpm-value">--</p>
                         <p class="result-label">BPM</p>
-                        <div class="heart-icon" id="heart-icon">&#10084;</div>
                     </div>
                     <div>
                         <p class="result-value" id="pi-value">--</p>
@@ -52,8 +52,13 @@
 
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/devicecheck.js"></script>
     <script src="assets/js/volume.js"></script>
     <script src="assets/js/oximeter-ble.js"></script>
+
+    <footer>    
+        <p id="browser-info"></p>
+    </footer>
 
 </body>
 
