@@ -88,17 +88,17 @@ const browser = detectBrowser();
 const deviceInfo = getDeviceInfo();
 if (deviceInfo.operatingSystem == "iOS") {
     if (!isBluefy) {
-        alert("It is recommended to use bluefy APP to open.");
+        log("It is recommended to use bluefy APP to open.");
     }
 }
 else if (deviceInfo.operatingSystem == "Android") {
     if (browser.name != "Chrome" && browser.name != "Samsung Internet") {
-        alert("It is recommended to use Chrome APP to open.");
+        log("It is recommended to use Chrome APP to open.");
     }
 }
 else if(deviceInfo.deviceType=="Desktop"){
     if (browser.name != "Chrome" && browser.name != "Opera" && browser.name != "Edge") {
-        alert("It is recommended to use Chrome APP to open.");
+        log("It is recommended to use Chrome APP to open.");
     }
 }
 

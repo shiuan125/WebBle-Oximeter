@@ -13,6 +13,20 @@
 
 <body>
     <div class="container">
+        <div class="top-buttons">
+            <button class="btn btn-primary" onclick="onConnectButtonClick()">Connect</button>
+            <button class="btn btn-primary" onclick="onDisconnectButtonClick()">Disconnect</button>
+            <!-- <button class="btn btn-primary" onclick="onReconnectButtonClick()">Reconnect</button> -->
+            <span id="bl-icon" hidden><i class="fa-brands fa-bluetooth"></i></span>
+        </div>
+        <div class="card">
+            <h2>Log</h2>
+            <div id="output" class="output">
+                <div id="content"></div>
+                <div id="status"></div>
+                <pre id="log"></pre>
+            </div>
+        </div>
         <div class="card">
             <h2>Oximeter Readings</h2>
             <div class="heart-icon" id="heart-icon">&#10084;</div>
@@ -34,10 +48,6 @@
                 </div>
                 <div class="button-group">
                     <p id="countdown-timer"></p>
-                    <button class="btn btn-primary" onclick="onConnectButtonClick()">Connect with oximeter</button>
-                    <button class="btn btn-primary" onclick="onDisconnectButtonClick()">Disconnect</button>
-                    <button class="btn btn-primary" onclick="onReconnectButtonClick()">Reconnect</button>
-                    <span id="bl-icon" hidden><i class="fa-brands fa-bluetooth"></i></span>
                 </div>
             </div>
         </div>
@@ -49,14 +59,15 @@
             </div>
         </div>
     </div>
-
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/bluetooth.min.js"></script>
+    <!-- <script src="assets/js/oximeter-ble.js"></script> -->
     <script src="assets/js/devicecheck.js"></script>
     <script src="assets/js/volume.js"></script>
-    <script src="assets/js/oximeter-ble.js"></script>
 
-    <footer>    
+
+    <footer>
         <p id="browser-info"></p>
     </footer>
 
