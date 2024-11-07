@@ -47,10 +47,12 @@ function getDeviceInfo() {
     if (/android/i.test(userAgent)) {
         deviceType = "Mobile";
         operatingSystem = "Android";
-    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+    }
+    else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
         deviceType = "Mobile";
         operatingSystem = "iOS";
-    } else if (/Windows Phone/i.test(userAgent)) {
+    }
+    else if (/Windows Phone/i.test(userAgent)) {
         deviceType = "Mobile";
         operatingSystem = "Windows Phone";
     }
@@ -59,8 +61,14 @@ function getDeviceInfo() {
         deviceType = "Desktop";
         operatingSystem = "Windows";
     } else if (/Mac/i.test(userAgent)) {
-        deviceType = "Desktop";
-        operatingSystem = "MacOS";
+        if (navigator.maxTouchPoints && navigator.maxTouchPoints > 2) {
+            deviceType = "Tablet";
+            operatingSystem = "iOS";
+        }
+        else {
+            deviceType = "Desktop";
+            operatingSystem = "MacOS";
+        }
     } else if (/Linux/i.test(userAgent)) {
         deviceType = "Desktop";
         operatingSystem = "Linux";
@@ -84,26 +92,24 @@ function isIosBluefy() {
     return isBluefy;
 }
 
-const browser = detectBrowser();
-const deviceInfo = getDeviceInfo();
-if (deviceInfo.operatingSystem == "iOS") {
-    if (!isBluefy) {
-        log("It is recommended to use bluefy APP to open.");
-    }
-}
-else if (deviceInfo.operatingSystem == "Android") {
-    if (browser.name != "Chrome" && browser.name != "Samsung Internet") {
-        log("It is recommended to use Chrome APP to open.");
-    }
-}
-else if(deviceInfo.deviceType=="Desktop"){
-    if (browser.name != "Chrome" && browser.name != "Opera" && browser.name != "Edge") {
-        log("It is recommended to use Chrome APP to open.");
-    }
-}
 
-
-window.onload = function() {
-    var browser = detectBrowser();
-    document.getElementById('browser-info').textContent =`Browser: ${browser.name} ${browser.version} device: ${deviceInfo.deviceType} Browser: ${deviceInfo.operatingSystem}`;
-}
+window.addEventListener('load', function () {
+    const browser = detectBrowser();
+    const deviceInfo = getDeviceInfo();
+    if (deviceInfo.operatingSystem == "iOS") {
+        if (!isBluefy) {
+            log("It is recommended to use bluefy APP to open.");
+        }
+    }
+    else if (deviceInfo.operatingSystem == "Android") {
+        if (browser.name != "Chrome" && browser.name != "Samsung Internet") {
+            log("It is recommended to use Chrome APP to open.");
+        }
+    }
+    else if (deviceInfo.deviceType == "Desktop") {
+        if (browser.name != "Chrome" && browser.name != "Opera" && browser.name != "Edge") {
+            log("It is recommended to use Chrome APP to open.");
+        }
+    }
+    document.getElementById('browser-info').textContent = `Browser: ${browser.name} ${browser.version} device: ${deviceInfo.deviceType} Browser: ${deviceInfo.operatingSystem}`;
+});
