@@ -93,7 +93,7 @@ function isIosBluefy() {
 }
 
 
-window.addEventListener('load', function () {
+window.addEventListener('DOMContentLoaded', function () {
     const browser = detectBrowser();
     const deviceInfo = getDeviceInfo();
     if (deviceInfo.operatingSystem == "iOS") {
@@ -112,4 +112,5 @@ window.addEventListener('load', function () {
         }
     }
     document.getElementById('browser-info').textContent = `Browser: ${browser.name} ${browser.version} device: ${deviceInfo.deviceType} Browser: ${deviceInfo.operatingSystem}`;
+
 });
